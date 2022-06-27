@@ -497,10 +497,11 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 \]
 
 Соотношения
-\[
+\begin{equation}
+	\label{eq:phi_psi_connection_sym}
 	\pd{\varphi}{r} = \frac{1}{r}\pd{\psi}{z},\quad
 	\pd{\varphi}{z} = -\frac{1}{r}\pd{\psi}{r}
-\]
+\end{equation}
 связывают функцию тока и потенциал для осесимметричных течений. Полученные соотношения \alert{отличаются} от условий Коши -- Римана (\ref{eq:Cauchi_Riman}), а уравнение для функции тока:
 \[
 	\pdk{\psi}{r}+\pdk{\psi}{z} - \frac{1}{r}\pd{\psi}{r} = 0
@@ -517,21 +518,24 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 Потенциалы и функции тока простейших осесимметричных течений в цилиндрических переменных ($r$, $z$):
 
 \begin{enumerate}
-	\item поступательное движение
-		\[
-		\varphi\argrz = V z \quad\Rightarrow\quad
-		\psi\argrz = -\frac{V}{2}r^2 + C;
-		\]
-	\item  источник, сток
-		\[
-		\varphi\argrz = -\frac{q}{4\pi} \frac{1}{\sqrt{r^2+z^2}}\quad\Rightarrow\quad
-		\psi\argrz = \frac{q}{4\pi}\frac{z}{\sqrt{r^2+z^2}} + C;
-		\]	
-		\item диполь
-			\[
-			\varphi\argrz =  -\frac{M}{4\pi} \frac{z}{(\sqrt{r^2+z^2})^3}\quad\Rightarrow\quad
-			\psi\argrz =  -\frac{M}{4\pi} \frac{r^2}{(\sqrt{r^2+z^2})^3}+C.
-			\]
+	\item поступательное движение:
+		\begin{equation}
+			\label{eq:translation_3D}
+			\varphi\argrz = V z \quad\Rightarrow\quad
+			\psi\argrz = -\frac{V}{2}r^2 + C;
+		\end{equation}
+	\item  источник, сток:
+		\begin{equation}
+			\label{eq:source_3D}
+			\varphi\argrz = -\frac{q}{4\pi} \frac{1}{\sqrt{r^2+z^2}}\quad\Rightarrow\quad
+			\psi\argrz = \frac{q}{4\pi}\frac{z}{\sqrt{r^2+z^2}} + C;
+		\end{equation}	
+		\item диполь в направлении оси $Oz$:
+			\begin{equation}
+				\label{eq:dipol_3D}
+				\varphi\argrz =  -\frac{M}{4\pi} \frac{z}{(\sqrt{r^2+z^2})^3}\quad\Rightarrow\quad
+				\psi\argrz =  -\frac{M}{4\pi} \frac{r^2}{(\sqrt{r^2+z^2})^3}+C.
+			\end{equation}
 		
 \end{enumerate}
 
@@ -543,6 +547,8 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 	Как преобразуются условия Коши-Римана в случае цилиндрических и сферических координат? Как выглядят операторы дифференциальных уравнений в постановке задач на потенциал и функцию тока (задачи Дирихле, Неймана)?
 	
 	\item Показать, что поток жидкости через поверхность, образованную вращением дуги, равен разности значений функции тока на концах этой дуги.
+	
+	\item Используя связь потенциала и функции тока (\ref{eq:phi_psi_connection_sym}), получить их выражения для элементарных течений, описывающих поступательное движение (\ref{eq:translation_3D}), источник (сток) (\ref{eq:source_3D}) и диполь (\ref{eq:dipol_3D}). Какое физическое значение у констант в этих формулах?
 	
 	\item 
 	Для шара, двигающегося с ускорением в идеальной несжимаемой жидкости, определить силу, действующую на жидкость. \textit{Указание: воспользоваться уравнением Коши-Лагранжа после определения потенциала жидкости.}
@@ -564,9 +570,64 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 
 \section{Динамика вязкой жидкости}
 
+\subsection{Основные уравнения вязкой жидкости}
+
+Движение вязкой несжимаемой жидкости описывается \alert{уравнениями Навье -- Стокса}:
+\[
+	\divo \vec{v} = 0,
+\]
+\[
+	\pd{\vec{v}}{t} + (\vec{v}\cdot\nabla)\vec{v} = -\frac{1}{\rho}\nabla p + \nu \Delta \vec{v} + \vec{f},
+\]
+где \alert{неизвестные функции}: $\vec{v}\argtxv$ -- вектор скорости; $p\argtxv$ -- давление; $T\argtxv$~-- температура. \alert{Константы}, определяющие течение: $\rho$ -- плотность; $\nu$ -- коэффициент кинематической вязкости; $\vec{f}$ -- вектор внешних сил. Часто вместо \alert{кинематической вязкости} $\nu$ используют \alert{коэффициент динамической вязкости}: $\mu = \rho \nu$.
+		
+Расчёт температурного поля, если требуется осуществляется путём решения дополнительного уравнения, с использованием решения уравнений Навье-Стокса:
+\[
+c_V\left(\pd{T}{t} + (\vec{v}\cdot\nabla)T \right) = \frac{\kappa}{\rho} \Delta T + \frac{2\mu}{\rho} e_{ij}e_{ij},
+\]
+\[
+e_{ij} = \frac{1}{2}\left(
+\pd{v_i}{x_j}+\pd{v_j}{x_i}
+\right)\quad
+(i,j = 1,2,3),
+\]
+где $e_{ij}$ -- тензор скоростей деформации ($i,j = 1,2,3$); $\kappa$ -- коэффициент температуропроводности.
+
+В случае \alert{осесимметричного течения} уравнения Навье-Стокса в цилиндрической системе координат ($r$, $\theta$, $z$) (рис. \ref{fig:spherical_cylindrical_origin}б) имеют вид\footnote{Пренебрегли зависимостью от $\theta$.}:
+\[
+\pd{}{r} (r v_r) + \pd{}{z} (r v_z) = 0,
+\]
+\[
+\pd{v_r}{t} + v_r\pd{v_r}{r} + v_z\pd{v_r}{z} = -\frac{1}{\rho} \pd{p}{r} + \nu \left(\Delta v_r - \frac{v_r}{r^2}\right),
+\]
+\[
+\pd{v_z}{t} + v_r\pd{v_z}{r} + v_z\pd{v_z}{z} = -\frac{1}{\rho} \pd{p}{z} + \nu \Delta v_z,
+\]
+\[
+\Delta = \pdk{}{r}+\frac{1}{r}\pd{}{r} + \pdk{}{z};
+\]
+в сферической системе координат ($r$,  $\lambda$, $\theta$) (рис. \ref{fig:spherical_cylindrical_origin}а)\footnote{Пренебрегли зависимостью от $\lambda$.}:
+\[
+\frac{1}{r^2} \pd{}{r}(r^2 v_r) + \frac{1}{r \sin \theta} \pd{}{\theta}(v_\theta \sin\theta) = 0,
+\]
+\[
+\pd{v_r}{t} + v_r\pd{v_r}{r} + \frac{v_\theta}{r} \pd{v_r}{\theta} - \frac{v_\theta^2}{r} = -\frac{1}{\rho} \pd{p}{r} + 
+\nu \left(\Delta v_r - \frac{2 v_r}{r^2} - \frac{2}{r^2}\pd{v_\theta}{\theta} - \frac{2 v_\theta \ctg\theta}{r^2}\right),
+\]
+\[
+\pd{v_\theta}{t} + v_r\pd{v_\theta}{r} + \frac{v_\theta}{r} \pd{v_\theta}{\theta} + \frac{v_r v_\theta}{r} = 
+-\frac{1}{r \rho} \pd{p}{\theta} + 
+\nu \left(\Delta v_\theta + \frac{2}{r^2}\pd{v_r}{\theta} - \frac{v_\theta}{r^2 \sin^2 \theta}\right),
+\]
+\[
+\Delta = \frac{1}{r^2} \pd{}{r}\left(r^2\pd{}{r}\right) + \frac{1}{r^2 \sin\theta} \pd{}{\theta} \left(\sin\theta \pd{}{\theta}\right).
+\]
+
+В случае обтекания тела вязкой жидкостью  необходимо использовать условие \alert{прилипания}, заключающееся в том, что скорость жидкости на границе с телом совпадает со скоростью перемещения границы. Если тело покоится, то скорость жидкости равна нулю.
+
 \subsection{Задачи для самостоятельного решения}
 
-\begin{enumerate}
+\begin{problems}
 	
 	\item Найдите вектор скорости, давление, вектор вихря и силу Стокса при обтекании шара вязкой жидкостью в приближении Стокса.
 	
@@ -585,13 +646,13 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 	 
 	{\small \textit{Указание:} показать, что работа, совершаемая над жидкостью, не целиком идёт на изменение кинетической энергии.}
 
-\end{enumerate}
+\end{problems}
 
 \section{$\Pi$-теорема}
 
 \subsection{Задачи для самостоятельного решения}
 
-\begin{enumerate}
+\begin{problems}
 	
 	\item Используя $\Pi$-теорему, определить силу сопротивления шара при его внедрении с постоянной скоростью $v$ в полупространство, заполненное вязкой несжимаемой жидкостью. Рассмотреть предельные случаи $v \to 0$, $v \to \infty$. Радиус шара известен.
 	
@@ -601,13 +662,13 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 	\item
 	Задача о точечном взрыве. В некоторой точке выделилось количество энергии $E$ . Определить зависимости скорости $D$ и координаты $R$ ударной волны от времени $t$, а также скорость $v_2$, плотность $\rho_2$ и давление $p_2$ за ударной волной. 
 
-\end{enumerate}
+\end{problems}
 
 \section{Одномерные изоэнтропические течения идеального газа }
 
 \subsection{Задачи для самостоятельного решения}
 
-\begin{enumerate}
+\begin{problems}
 	
 	\item Пользуясь методом характеристик, повторить вывод инвариантов Римана и характеристических направлений на основе изоэнтропического приближения одномерной газовой динамики.
 	
@@ -628,6 +689,6 @@ d\psi = r (v_r dz - v_z dr) = 0\quad
 	\item 
 	Из трубы, заполненной при $x>0$ газом с параметрами  $v_0=0$, $p_0$, $\rho_0$, начинает выдвигаться поршень с постоянной скоростью $u$. Определить движение газа.
 
-\end{enumerate}
+\end{problems}
 
 \end{document}
