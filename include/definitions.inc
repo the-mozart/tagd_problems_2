@@ -19,6 +19,9 @@
 \newcommand{\argtxo}{(t, x)}
 \newcommand{\arguv}{(\vec{u})}
 
+\newcommand{\argtxyz}{(t, x, y, z)}
+\newcommand{\argtxyztick}{(t', x', y', z')}
+
 \newcommand{\argtxi}{(t, \xi_1,\xi_2,\xi_3)}
 \newcommand{\argtoxi}{(t_0, \xi^1,\xi^2,\xi^3)}
 \newcommand{\argtx}{(t, x_1,x_2,x_3)}
