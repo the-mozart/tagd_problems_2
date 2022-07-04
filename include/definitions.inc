@@ -59,3 +59,10 @@
 
 \newtheorem{dfn}{Определение}  
 \newtheorem{theorems}{Теорема}  
+\newtheorem{problem}{Задача}  
+
+\newcommand{\kg}{\text{кг}}
+\newcommand{\m}{\text{м}}
+\newcommand{\s}{\text{с}}
+
+
